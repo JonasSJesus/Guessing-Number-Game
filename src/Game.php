@@ -12,7 +12,6 @@ class Game
 
     private LeaderboardManager $leaderboard;
     private bool $success = false;
-    private int $attempts = 1;
     private array $difficultyLevel = [
         1 => [
             "difficulty" => "\033[32mEasy\033[0m",
@@ -63,6 +62,7 @@ class Game
             
             $randomNumber = $this->generateRandomNumber();
             $success = false;
+            $attempts = 1;
             
             for ($i=0; $i < $this->difficultyLevel[$difficulty]["chances"]; $i++) { 
                 $attempt = readline("Enter your guess: ");
@@ -71,15 +71,15 @@ class Game
                     break;
                 }
 
-                $this->attempts++;
+                $attempts++;
             }
     
             if ($success) {
-                echo $this->formatText("Congratulation, you win the game in {$this->attempts} attempts! :)", Colors::GREEN) . PHP_EOL;
+                echo $this->formatText("Congratulation, you win the game in {$attempts} attempts! :)", Colors::GREEN) . PHP_EOL;
                 $nickName = readline("Tell me your name: (For the leaderboard ;) ");
 
                 $points = $this->calculatePoints(
-                                $this->attempts, 
+                                $attempts, 
                                 $this->difficultyLevel[$difficulty]["chances"], 
                                 $this->difficultyLevel[$difficulty]["points_multiplier"]
                             );
