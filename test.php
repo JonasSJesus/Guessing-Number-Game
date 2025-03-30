@@ -1,10 +1,10 @@
 <?php
 
 /**
- * This is the entire game but in one file
- * this "version" of the game don't have other funcionalites, like leaderboard and multi rounds.
- * was the "first version" of the game.
- * However, stil playable!
+ * This is the entire game but in one file.
+ * this "version" of the game doesn't have other features, such as leaderboards and multi rounds.
+ * It was the "first version" of the game.
+ * still playable though!
  * 
  */
 
