@@ -61,7 +61,8 @@ class Game
             echo "Great! You have selected the " . $this->difficultyLevel[$difficulty]["difficulty"] . " difficulty level. Let's start the game! \n";
             echo PHP_EOL;
             
-            $randomNumber = $this->generateRandomNumber();
+            // $randomNumber = $this->generateRandomNumber();
+            $randomNumber = 50;
             $success = false;
             
             for ($i=0; $i < $this->difficultyLevel[$difficulty]["chances"]; $i++) { 

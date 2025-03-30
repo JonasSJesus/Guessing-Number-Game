@@ -8,8 +8,14 @@ class LeaderboardManager
 
     public function saveToLeaderboard(string $nickName, int $points): void
     {
+        if (!is_dir(__DIR__ . "/../Storage")) {
+            echo "Creating directory Storage" . PHP_EOL;
+            mkdir(__DIR__ . "/../Storage");
+            sleep(1);
+        }
+
         if (!is_file($this->pathFile)) {
-            echo "criando arquivo json... \n";
+            echo "Creating json file... " . PHP_EOL;
             touch($this->pathFile);
             sleep(1);
         }
@@ -22,18 +28,25 @@ class LeaderboardManager
 
         // Transform json content in associative array
         $savedData = file_get_contents($this->pathFile);
-        
+
+
         // Verify if already have json contents in archive
         if (!$savedData) {
+            $data = [
+                [
+                "Nickname" => $nickName,
+                "Points" => $points
+                ]
+            ];
 
-            echo "Criando nova tabela\n";
+            echo "Creating new table" . PHP_EOL;
             $payload = json_encode($data, JSON_PRETTY_PRINT);
             file_put_contents($this->pathFile, $payload);
             return;
         }
         
         // Append new data to old json array
-        $dataToArray = json_decode($savedData, true);
+        $dataToArray = json_decode($savedData, true);       
         array_push($dataToArray, $data);
 
         // Sort array by the highest points
